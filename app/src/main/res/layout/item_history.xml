@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -8,13 +9,18 @@
         android:id="@+id/textView_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Date"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:gravity="start"
+        tools:ignore="HardcodedText" />
     <TextView
         android:id="@+id/textView_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Result"
-        android:textSize="24sp" />
-
+        android:textSize="24sp"
+        android:gravity="end"
+        tools:ignore="HardcodedText" />
 </LinearLayout>
