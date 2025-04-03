@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Крестики-нолики</string>
     <string name="title_history">История игр</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_game">Начать игру</string>
+    <string name="lastgame_text">Последняя игра:</string>
 </resources>
