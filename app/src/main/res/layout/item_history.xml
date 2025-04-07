@@ -4,23 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_gravity="center_horizontal">
     <TextView
         android:id="@+id/textView_date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginHorizontal="15dp"
         android:text="Date"
         android:textSize="24sp"
-        android:gravity="start"
+        android:gravity="center_horizontal"
         tools:ignore="HardcodedText" />
     <TextView
         android:id="@+id/textView_result"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
+        android:layout_marginHorizontal="15dp"
         android:text="Result"
         android:textSize="24sp"
-        android:gravity="end"
+        android:gravity="center_horizontal"
         tools:ignore="HardcodedText" />
 </LinearLayout>
