@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".GameFragment"/>
+    android:layout_height="700dp"
+    tools:context=".GameFragment">
+
+    <!-- Текстовое поле для статуса игры -->
+    <TextView
+        android:id="@+id/textViewGameStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="160dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="top|center_horizontal"
+        tools:text="Ход игрока X" />
+
+    <!-- Игровое поле (GridLayout) по центру -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayoutBoard"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:layout_gravity="center"
+        app:alignmentMode="alignMargins"
+        app:columnCount="3"
+        app:rowCount="3"
+        android:background="@android:color/darker_gray">
+
+        <!-- Ячейки поля (ImageButton) - 9 штук -->
+        <!-- Ряд 0 -->
+        <ImageButton
+            android:id="@+id/button_00"
+            style="@style/TicTacToeCell"
+            app:layout_column="0"
+            app:layout_row="0"
+            android:contentDescription="@string/cell_0_0" />
+
+        <ImageButton
+            android:id="@+id/button_01"
+            style="@style/TicTacToeCell"
+            app:layout_column="1"
+            app:layout_row="0"
+            android:contentDescription="@string/cell_0_1" />
+
+        <ImageButton
+            android:id="@+id/button_02"
+            style="@style/TicTacToeCell"
+            app:layout_column="2"
+            app:layout_row="0"
+            android:contentDescription="@string/cell_0_2" />
+
+        <!-- Ряд 1 -->
+        <ImageButton
+            android:id="@+id/button_10"
+            style="@style/TicTacToeCell"
+            app:layout_column="0"
+            app:layout_row="1"
+            android:contentDescription="@string/cell_1_0" />
+
+        <ImageButton
+            android:id="@+id/button_11"
+            style="@style/TicTacToeCell"
+            app:layout_column="1"
+            app:layout_row="1"
+            android:contentDescription="@string/cell_1_1" />
+
+        <ImageButton
+            android:id="@+id/button_12"
+            style="@style/TicTacToeCell"
+            app:layout_column="2"
+            app:layout_row="1"
+            android:contentDescription="@string/cell_1_2" />
+
+        <!-- Ряд 2 -->
+        <ImageButton
+            android:id="@+id/button_20"
+            style="@style/TicTacToeCell"
+            app:layout_column="0"
+            app:layout_row="2"
+            android:contentDescription="@string/cell_2_0" />
+
+        <ImageButton
+            android:id="@+id/button_21"
+            style="@style/TicTacToeCell"
+            app:layout_column="1"
+            app:layout_row="2"
+            android:contentDescription="@string/cell_2_1" />
+
+        <ImageButton
+            android:id="@+id/button_22"
+            style="@style/TicTacToeCell"
+            app:layout_column="2"
+            app:layout_row="2"
+            android:contentDescription="@string/cell_2_2" />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <!-- Кнопка перезапуска над кнопкой возврата -->
+    <Button
+        android:id="@+id/buttonRestart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="80dp"
+        android:text="@string/restart_game"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <!-- Кнопка возврата в самый низ -->
+    <Button
+        android:id="@+id/buttonBackToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:text="@string/back_to_menu"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</FrameLayout>

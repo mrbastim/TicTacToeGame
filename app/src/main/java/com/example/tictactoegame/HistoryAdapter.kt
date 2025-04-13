@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class HistoryAdapter(context: Context, private val items: List<GameHistory>)
     : ArrayAdapter<GameHistory>(context, 0, items) {
@@ -18,7 +20,8 @@ class HistoryAdapter(context: Context, private val items: List<GameHistory>)
         val textViewDate = view.findViewById<TextView>(R.id.textView_date)
         val textViewResult = view.findViewById<TextView>(R.id.textView_result)
 
-        textViewDate.text = item.timestamp.toString()
+        val df = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        textViewDate.text = df.format(item.timestamp)
         textViewResult.text = item.winner.toString()
 
         return view

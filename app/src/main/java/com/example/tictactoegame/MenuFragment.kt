@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 
 class MenuFragment : Fragment() {
@@ -19,6 +20,8 @@ class MenuFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val appname = requireActivity().findViewById<TextView>(R.id.app_name)
+        appname.visibility = View.VISIBLE
         // Set up click listeners for buttons here
         view.findViewById<View>(R.id.button_startgame).setOnClickListener {
             // Navigate to GameFragment
@@ -32,6 +35,8 @@ class MenuFragment : Fragment() {
                 .replace(R.id.frame_layout, GameFragment())
                 .addToBackStack(null)
                 .commit()
+            appname.visibility = View.GONE
+
         }
 
         view.findViewById<View>(R.id.button_history).setOnClickListener {

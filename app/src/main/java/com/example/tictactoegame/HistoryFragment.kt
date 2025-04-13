@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 data class GameHistory(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "timestamp") val timestamp: Long,
-    @ColumnInfo(name = "win") val winner: Boolean
+    @ColumnInfo(name = "win") val winner: String
 )
 
 @Dao
@@ -38,7 +38,7 @@ interface GameHistoryDao {
     suspend fun getAllHistory(): List<GameHistory>
 }
 
-@Database(version = 1, entities = [GameHistory::class])
+@Database(version = 2, entities = [GameHistory::class])
 abstract class AppDatabase : RoomDatabase() {
     abstract fun gameHistoryDao(): GameHistoryDao
 }
@@ -63,7 +63,10 @@ class HistoryFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
         // Получаем ссылку на базу данных
-         val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "game_history").build()
+         val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "game_history")
+             .fallbackToDestructiveMigration()
+             .build()
+
         // Получаем DAO
          val gameHistoryDao = db.gameHistoryDao()
         // Получаем данные из базы данных
@@ -74,9 +77,9 @@ class HistoryFragment : Fragment() {
 
             val listViewHistory = view.findViewById<ListView>(R.id.list_view_history)
             gameHistoryList = listOf(
-                GameHistory(timestamp = 1696118400000, winner = true),
-                GameHistory(timestamp = 1696204800000, winner = false),
-                GameHistory(timestamp = 1696291200000, winner = true)
+                GameHistory(timestamp = 1696118400000, winner = "X"),
+                GameHistory(timestamp = 1696204800000, winner = "O"),
+                GameHistory(timestamp = 1696291200000, winner = "X")
             )
             val adapter = HistoryAdapter(requireContext(), gameHistoryList)
             listViewHistory.adapter = adapter

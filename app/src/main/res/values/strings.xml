@@ -6,4 +6,15 @@
     <string name="lastgame_text">Последняя игра:</string>
     <string name="info_text_descr">info</string>
     <string name="button_back">Вернуться назад</string>
+    <string name="cell_0_0">Ячейка 0, 0</string>
+    <string name="cell_0_1">Ячейка 0, 1</string>
+    <string name="cell_0_2">Ячейка 0, 2</string>
+    <string name="cell_1_0">Ячейка 1, 0</string>
+    <string name="cell_1_1">Ячейка 1, 1</string>
+    <string name="cell_1_2">Ячейка 1, 2</string>
+    <string name="cell_2_0">Ячейка 2, 0</string>
+    <string name="cell_2_1">Ячейка 2, 1</string>
+    <string name="cell_2_2">Ячейка 2, 2</string>
+    <string name="restart_game">Начать заново</string>
+    <string name="back_to_menu">В меню</string>
 </resources>

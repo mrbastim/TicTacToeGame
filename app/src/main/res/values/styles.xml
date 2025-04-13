@@ -1,0 +1,21 @@
+<resources>
+    <!-- Базовая тема приложения -->
+    <style name="Theme.TicTacToe" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- ... другие атрибуты темы ... -->
+    </style>
+
+    <!-- Стиль для ячейки игрового поля -->
+    <style name="TicTacToeCell">
+        <item name="android:layout_width">0dp</item> <!-- Ширина 0dp для работы весов -->
+        <item name="android:layout_height">0dp</item> <!-- Высота 0dp для работы весов -->
+        <item name="layout_columnWeight">1</item> <!-- Равное распределение ширины -->
+        <item name="layout_rowWeight">1</item> <!-- Равное распределение высоты -->
+        <item name="layout_gravity">fill</item> <!-- Заполнение ячейки -->
+        <item name="android:background">@android:color/white</item> <!-- Белый фон ячейки -->
+        <item name="android:layout_margin">2dp</item> <!-- Отступы для создания линий сетки -->
+        <item name="android:scaleType">fitCenter</item> <!-- Масштабирование иконки -->
+        <!-- Можно добавить "?attr/selectableItemBackground" для эффекта нажатия,
+             но нужно будет аккуратно настроить фон, чтобы линии сетки не пропали -->
+<!--         <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>-->
+    </style>
+</resources>
