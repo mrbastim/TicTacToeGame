@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import androidx.room.ColumnInfo
 import androidx.room.Database
 import androidx.room.Dao
@@ -58,6 +59,9 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val button_back = view.findViewById<View>(R.id.button_history_back)
+        val appname = requireActivity().findViewById<TextView>(R.id.app_name)
+        appname.visibility = View.GONE
+        // Устанавливаем слушатель на кнопку "Назад"
         button_back.setOnClickListener {
             // Возвращаемся к предыдущему фрагменту
             parentFragmentManager.popBackStack()
@@ -75,12 +79,10 @@ class HistoryFragment : Fragment() {
             var gameHistoryList = gameHistoryDao.getAllHistory()
             // дальнейшая работа с gameHistoryList
 
+            if (gameHistoryList.isEmpty()) {
+                gameHistoryList = listOf(GameHistory(0, System.currentTimeMillis(), "No history"))
+            }
             val listViewHistory = view.findViewById<ListView>(R.id.list_view_history)
-            gameHistoryList = listOf(
-                GameHistory(timestamp = 1696118400000, winner = "X"),
-                GameHistory(timestamp = 1696204800000, winner = "O"),
-                GameHistory(timestamp = 1696291200000, winner = "X")
-            )
             val adapter = HistoryAdapter(requireContext(), gameHistoryList)
             listViewHistory.adapter = adapter
         }

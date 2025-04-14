@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
 
@@ -57,8 +60,10 @@ class GameFragment : Fragment() {
                 if (board[row][col] == null) {
                     board[row][col] = currentPlayer
                     updateButton(button, currentPlayer)
-                    if (checkWin()) {
+                    val winner = checkWin()
+                    if (winner != null) {
                         disableButtons() // Если победа, отключаем дальнейшие ходы
+                        insertWinnerIntoDB(winner) // Добавляем победителя в БД
                     } else {
                         // Переключение игрока
                         currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
@@ -77,31 +82,31 @@ class GameFragment : Fragment() {
     }
 
     // Проверка условий победы (по строкам, столбцам и диагоналям)
-    private fun checkWin(): Boolean {
+    private fun checkWin(): Char? {
         // Проверка строк
         for (i in 0 until 3) {
             if (board[i][0] != null &&
                 board[i][0] == board[i][1] &&
                 board[i][1] == board[i][2]
-            ) return true
+            ) return board[i][0]
         }
         // Проверка столбцов
         for (j in 0 until 3) {
             if (board[0][j] != null &&
                 board[0][j] == board[1][j] &&
                 board[1][j] == board[2][j]
-            ) return true
+            ) return board[0][j]
         }
         // Проверка диагоналей
         if (board[0][0] != null &&
             board[0][0] == board[1][1] &&
             board[1][1] == board[2][2]
-        ) return true
+        ) return board[0][0]
         if (board[0][2] != null &&
             board[0][2] == board[1][1] &&
             board[1][1] == board[2][0]
-        ) return true
-        return false
+        ) return board[0][2]
+        return null
     }
 
     // Отключение всех кнопок после завершения игры
@@ -115,6 +120,22 @@ class GameFragment : Fragment() {
         buttonBackToMenu?.setOnClickListener {
             // Возвращаемся к предыдущему фрагменту
             parentFragmentManager.popBackStack()
+        }
+        buttonRestart?.setOnClickListener {
+            // Сброс игры
+            board = Array(3) { Array<Char?>(3) { null } }
+            currentPlayer = 'X'
+            initializeBoard(requireView())
+            buttonRestart.visibility = View.GONE
+            buttonBackToMenu?.visibility = View.GONE
+        }
+    }
+    private fun insertWinnerIntoDB(winner: Char) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "game_history")
+                .fallbackToDestructiveMigration()
+                .build()
+            db.gameHistoryDao().insert(GameHistory(timestamp = System.currentTimeMillis(), winner = winner.toString()))
         }
     }
 }
