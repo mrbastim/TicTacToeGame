@@ -19,15 +19,20 @@ class HistoryAdapter(context: Context, private val items: List<GameHistory>)
 
         val textViewDate = view.findViewById<TextView>(R.id.textView_date)
         val textViewResult = view.findViewById<TextView>(R.id.textView_result)
+        val textViewType = view.findViewById<TextView>(R.id.textView_type)
 
         val df = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
 
         if (item.winner == "No history") {
             textViewResult.text = item.winner
             textViewDate.visibility = View.GONE
+            textViewType.visibility = View.GONE
         } else {
+            textViewDate.visibility = View.VISIBLE
+            textViewType.visibility = View.VISIBLE
             textViewResult.text = item.winner.toString()
             textViewDate.text = df.format(item.timestamp)
+            textViewType.text = item.type.toString()
         }
 
         return view

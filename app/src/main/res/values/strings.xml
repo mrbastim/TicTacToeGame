@@ -17,4 +17,14 @@
     <string name="cell_2_2">Ячейка 2, 2</string>
     <string name="restart_game">Начать заново</string>
     <string name="back_to_menu">В меню</string>
+
+    <string-array name="game_modes">
+        <item>Кооператив</item>
+        <item>Игра с компьютером</item>
+    </string-array>
+    <string-array name="difficulty_levels">
+        <item>Лёгкий</item>
+        <item>Средний</item>
+        <item>Сложный</item>
+    </string-array>
 </resources>

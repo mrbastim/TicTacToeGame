@@ -2,7 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="my_light_primary">#000000</color> <!-- Светлый цвет -->
+    <color name="my_light_primary">#000000</color>
     <color name="my_dark_primary">#FFFFFF</color>
-    <color name="transparent">#00000000</color>  <!-- Тёмный цвет -->
+    <color name="transparent">#00000000</color>
+    <color name="cell_background_light">@android:color/white</color>  <!-- Тёмный цвет -->
+    <color name="background_dark">@android:color/black</color>
+    <color name="button_background">#000</color>
 </resources>

@@ -23,7 +23,8 @@ import kotlinx.coroutines.launch
 data class GameHistory(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "timestamp") val timestamp: Long,
-    @ColumnInfo(name = "win") val winner: String
+    @ColumnInfo(name = "win") val winner: String,
+    @ColumnInfo(name = "type") val type: String
 )
 
 @Dao
@@ -38,7 +39,7 @@ interface GameHistoryDao {
     suspend fun getAllHistory(): List<GameHistory>
 }
 
-@Database(version = 2, entities = [GameHistory::class])
+@Database(version = 3, entities = [GameHistory::class])
 abstract class AppDatabase : RoomDatabase() {
     abstract fun gameHistoryDao(): GameHistoryDao
 }
@@ -79,7 +80,7 @@ class HistoryFragment : Fragment() {
             // дальнейшая работа с gameHistoryList
 
             if (gameHistoryList.isEmpty()) {
-                gameHistoryList = listOf(GameHistory(0, System.currentTimeMillis(), "No history"))
+                gameHistoryList = listOf(GameHistory(0, System.currentTimeMillis(), "No history", ""))
             }
             val listViewHistory = view.findViewById<ListView>(R.id.list_view_history)
             val adapter = HistoryAdapter(requireContext(), gameHistoryList)

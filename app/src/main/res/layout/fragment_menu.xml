@@ -16,32 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_startgame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
-                android:text="@string/title_game" />
-
-            <Button
-                android:id="@+id/button_history"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
-                android:text="@string/title_history" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/textView_lastgame"
@@ -59,6 +35,55 @@
                 android:text="Результат"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_startgame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_background"
+                android:text="@string/title_game" />
+
+            <Button
+                android:id="@+id/button_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_background"
+                android:text="@string/title_history" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_game_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dropDownWidth="wrap_content"
+            android:layout_marginTop="20dp"
+            android:entries="@array/game_modes"
+            android:minHeight="48dp"
+            android:spinnerMode="dialog" />
+
+        <Spinner
+            android:id="@+id/spinner_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:dropDownWidth="wrap_content"
+            android:entries="@array/difficulty_levels"
+            android:minHeight="48dp"
+            android:spinnerMode="dialog"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
     </LinearLayout>
 
 

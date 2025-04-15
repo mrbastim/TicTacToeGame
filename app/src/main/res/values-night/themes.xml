@@ -5,4 +5,20 @@
         <!-- Было: <item name="android:colorPrimary">@color/white</item> -->
         <item name="android:colorPrimary">@color/my_dark_primary</item>
     </style>
+
+    <!-- Стиль для ячейки игрового поля -->
+<!--    <style name="TicTacToeCell">-->
+<!--        <item name="android:layout_width">0dp</item>-->
+<!--        <item name="android:layout_height">0dp</item>-->
+<!--        <item name="layout_columnWeight">1</item>-->
+<!--        <item name="layout_rowWeight">1</item>-->
+<!--        <item name="layout_gravity">fill</item>-->
+<!--        <item name="android:background">?attr/ticTacToeCellBackgroundColor</item>-->
+<!--        <item name="android:layout_margin">2dp</item>-->
+<!--        <item name="android:scaleType">fitCenter</item>-->
+<!--    </style>-->
+
+    <!-- Светлая тема -->
+    <color name="cell_background_light">@android:color/black</color>
+    <color name="button_background">#FFF</color>
 </resources>
