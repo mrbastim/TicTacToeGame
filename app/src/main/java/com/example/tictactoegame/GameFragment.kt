@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -53,10 +54,12 @@ class GameFragment : Fragment() {
 
     // Установка слушателей для каждой кнопки игрового поля
     private fun setupClickListeners() {
+
         cellButtons.forEachIndexed { index, button ->
             button.setOnClickListener {
                 val row = index / 3
                 val col = index % 3
+                val gameStatus = view?.findViewById<TextView>(R.id.textViewGameStatus)
                 if (board[row][col] == null) {
                     board[row][col] = currentPlayer
                     updateButton(button, currentPlayer)
@@ -64,9 +67,17 @@ class GameFragment : Fragment() {
                     if (winner != null) {
                         disableButtons() // Если победа, отключаем дальнейшие ходы
                         insertWinnerIntoDB(winner) // Добавляем победителя в БД
+                        gameStatus?.text = "Победитель: $winner"
+                        gameStatus?.visibility = View.VISIBLE
                     } else {
                         // Переключение игрока
                         currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
+                    }
+                    // Проверка на ничью
+                    if (board.all { row -> row.all { it != null } } and (winner == null)) {
+                        disableButtons() // Если ничья, отключаем дальнейшие ходы
+                        gameStatus?.text = "Ничья!"
+                        gameStatus?.visibility = View.VISIBLE
                     }
                 }
             }
@@ -114,6 +125,7 @@ class GameFragment : Fragment() {
         cellButtons.forEach { it.isEnabled = false }
         val buttonRestart = view?.findViewById<Button>(R.id.buttonRestart)
         val buttonBackToMenu = view?.findViewById<Button>(R.id.buttonBackToMenu)
+        val gameStatus = view?.findViewById<TextView>(R.id.textViewGameStatus)
         buttonRestart?.visibility = View.VISIBLE
         buttonBackToMenu?.visibility = View.VISIBLE
 
@@ -128,6 +140,8 @@ class GameFragment : Fragment() {
             initializeBoard(requireView())
             buttonRestart.visibility = View.GONE
             buttonBackToMenu?.visibility = View.GONE
+            gameStatus?.visibility = View.GONE
+            gameStatus?.text = ""
         }
     }
     private fun insertWinnerIntoDB(winner: Char) {

@@ -16,7 +16,6 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
 import androidx.room.Room
-import kotlinx.coroutines.flow.Flow
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -33,7 +32,7 @@ interface GameHistoryDao {
     suspend fun insert(gameHistory: GameHistory)
 
     @Query("SELECT * FROM game_history ORDER BY timestamp DESC LIMIT 1")
-    fun getRecentHistory(): Flow<List<GameHistory>>
+    fun getRecentHistory(): GameHistory
 
     @Query("SELECT * FROM game_history ORDER BY timestamp DESC")
     suspend fun getAllHistory(): List<GameHistory>
